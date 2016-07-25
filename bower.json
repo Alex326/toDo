@@ -1,0 +1,18 @@
+{
+  "name": "secondProject",
+  "authors": [
+    "Алексей Стамат <deamon326@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Alex326/toDo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
