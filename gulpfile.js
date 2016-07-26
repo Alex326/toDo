@@ -1,5 +1,3 @@
-'use strict';
-
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const stylus = require('gulp-stylus');
@@ -15,9 +13,18 @@ const del = require('del');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cleanCSS = require('gulp-clean-css');
+const browserify = require('gulp-browserify');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
+gulp.task('js', function () {
+        return gulp.src('./blocks/**/*.js')
+            .pipe(rename(function (path) {
+                path.dirname = '';
+            }))
+            .pipe(gulp.dest('./public/'))
+    }
+)
 
 gulp.task('views', function () {
     return gulp.src('pages/**/*.pug')
@@ -73,6 +80,7 @@ gulp.task('images', function () {
 gulp.task('watch', function () {
     gulp.watch('./{blocks,pages}/**/*.pug', gulp.series('views'));
     gulp.watch('./{blocks,pages}/**/*.styl', gulp.series('styles'));
+    gulp.watch('./{blocks,pages}/**/*.js', gulp.series('js'))
 });
 
 gulp.task('serve', function () {
@@ -92,6 +100,7 @@ gulp.task('clean', function () {
 gulp.task('build', gulp.series(
     'clean',
     gulp.parallel(
+        'js',
         'images',
         'views',
         'styles'

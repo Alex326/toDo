@@ -2,5 +2,5 @@
 
 ### Developing
 
-1. Run `npm install` to install server dependencies.
+1. Run `gulp` to install and watch server dependencies.
 
