@@ -49,7 +49,7 @@ gulp.task('views', function () {
 });
 
 gulp.task('styles', function () {
-    return gulp.src('./pages/**/*.styl')
+    return gulp.src('./{blocks,pages}/**/*.styl')
         .pipe(plumber({
             errorHandler: notify.onError(function (err) {
                 return {
@@ -57,8 +57,13 @@ gulp.task('styles', function () {
                 };
             })
         }))
+        .pipe(rename(function (path) {
+            path.dirname = '';
+        }))
         .pipe(gulpIf(isDevelopment, sourcemaps.init()))
-        .pipe(stylus())
+        .pipe(stylus({
+            'import css': true
+        }))
         .pipe(postcss([
             autoprefixer({
                 browsers: ['> 5%', 'ff > 14']
@@ -66,7 +71,7 @@ gulp.task('styles', function () {
         ]))
         .pipe(gulpIf(isDevelopment, sourcemaps.write('./')))
         .pipe(gulpIf(!isDevelopment, cleanCSS()))
-        .pipe(gulp.dest('./public'));
+        .pipe(gulp.dest('./public/'));
 });
 
 gulp.task('images', function () {

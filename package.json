@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/Alex326/toDo/issues"
   },
-  "homepage": "https://github.com/Alex326/toDo#readme"
+  "homepage": "https://github.com/Alex326/toDo#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
 }
